@@ -25,6 +25,7 @@ class Group(db.Model):
     # End Date
     # Max Num of PPL
     # Location
+    # Special Code
     # Atendees - Relationship
     # Restaurants - Relationship
 
