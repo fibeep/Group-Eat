@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from app.config import Config
+from flask_login import LoginManager, login_manager
+from flask_bcrypt import Bcrypt
 import os
 
 app = Flask(__name__)
