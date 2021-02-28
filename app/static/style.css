@@ -55,13 +55,13 @@ div.store {
     margin-bottom: 10px;
 }
 
-div.items {
+div.restaurants {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-div.item-details {
+div.restaurant-details {
     border: 1px solid black;
     margin: 5px;
     padding: 5px;

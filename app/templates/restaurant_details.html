@@ -3,6 +3,8 @@
 
 <h1>Restaurant - {{ restaurant.name }}</h1>
 
+<p><img src="{{ restaurant.photo_url }}" width="250px" height="250px"></p>
+
 <strong>Location:</strong> {{ restaurant.location }}
 
 <h2>Type:</h2> {{ restaurant.type }}
@@ -15,9 +17,9 @@
 
 <h2>Liked By</h2>
 
-<div class="items">
+<div class="restaurants">
     {% for atendee in group.atendees %}
-    <div class="item-details">
+    <div class="restaurant-details">
             <p><strong>{{ atendee.name }}</strong></p>
     </div>
     {% endfor %}
