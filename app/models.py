@@ -23,7 +23,7 @@ class Group(db.Model):
     #TODO:
     created_by = db.relationship('User')
     name = db.Column(db.String(80), nullable=False, unique=True)
-    money_goal = db.Column(db.Float(precision=2), nullable=False)
+    max_atendees = db.Column(db.Float(precision=2), nullable=False)
     location = db.Column(db.String(80), nullable=False, unique=True)
     code = db.Column(db.String(80), nullable=False, unique=True)
     # End Date
@@ -37,7 +37,7 @@ class Restaurant(db.Model):
     created_by = db.relationship('User')
     location = db.Column(db.String(80), nullable=False, unique=True)
     type = db.Column(db.String(80), nullable=False, unique=True)
-    price_rang = db.Column(db.String(80), nullable=False, unique=True)
+    price_range = db.Column(db.String(80), nullable=False, unique=True)
     description = db.Column(db.String(), nullable=False)
     photo_url = db.Column(URLType)
     # Users who like it
