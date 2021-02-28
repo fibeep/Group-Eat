@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>New Restaurant</h1>
+
+<form method="POST" action="{{ url_for('main.create_restaurant')}}">
+    {{form.csrf_token}}
+    <fieldset>
+        <legend>New Restaurant</legend>
+
+        {{form.name.label}}
+        {{form.name}}
+
+        {{form.code.label}}
+        {{form.code}}
+
+        {{form.max_atendees.label}}
+        {{form.max_atendees}}
+
+        {{form.location.label}}
+        {{form.location}}
+
+        {{form.submit}}
+
+
+    </fieldset>
+</form>
