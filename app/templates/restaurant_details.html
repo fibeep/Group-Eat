@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Restaurant - {{ restaurant.name }}</h1>
+
+<strong>Location:</strong> {{ restaurant.location }}
+
+<h2>Type:</h2> {{ restaurant.type }}
+
+<h2>Price Range:</h2> {{ restaurant.price_range }}
+
+<h3>Description:</h3> {{ restaurant.description }}
+
+<p><strong>Created By:</strong> {{restaurant.created_by.username}}</p>
+
+<h2>Liked By</h2>
+
+<div class="items">
+    {% for atendee in group.atendees %}
+    <div class="item-details">
+            <p><strong>{{ atendee.name }}</strong></p>
+    </div>
+    {% endfor %}
+</div>
+
+
+<h2>Edit Restaurant</h2>
+
+<form method="POST" action="/restaurant/{{restaurant.id}}">
+    {{form.csrf_token}}
+    <fieldset>
+        <legend>New Restaurant</legend>
+
+        {{form.name.label}}
+        {{form.name}}
+
+        {{form.location.label}}
+        {{form.location}}
+
+        {{form.type.label}}
+        {{form.type}}
+
+        {{form.price_range.label}}
+        {{form.price_range}}
+
+        {{form.description.label}}
+        {{form.description}}
+
+        {{form.photo_url.label}}
+        {{form.photo_url}}
+
+        {{form.submit}}
+
+
+    </fieldset>
+</form>
+
+{% endblock %}
