@@ -10,9 +10,6 @@ from app.auth.forms import SignUpForm, LoginForm
 from app import app, db
 auth = Blueprint('auth', __name__)
 
-
-# TODO: 
-
 # Create your routes here.
 
 @auth.route('/signup', methods=['GET', 'POST'])

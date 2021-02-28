@@ -7,7 +7,7 @@ from app import bcrypt
 from app.models import Group, Restaurant
 # Import Models
 
-#TODO:
+#:
 
 # Join Group Form
 
