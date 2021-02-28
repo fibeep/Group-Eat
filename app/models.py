@@ -21,6 +21,7 @@ class User(UserMixin, db.Model):
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     #TODO:
+    created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
     name = db.Column(db.String(80), nullable=False, unique=True)
     max_atendees = db.Column(db.Float(precision=2), nullable=False)
@@ -34,6 +35,7 @@ class Restaurant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     #TODO:
     name = db.Column(db.String(80), nullable=False, unique=True)
+    created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
     location = db.Column(db.String(80), nullable=False, unique=True)
     type = db.Column(db.String(80), nullable=False, unique=True)
