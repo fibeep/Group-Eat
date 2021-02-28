@@ -3,7 +3,7 @@
 
 <h1>New Group</h1>
 
-<form method="POST" action="{{ url_for('main.group')}}">
+<form method="POST" action="{{ url_for('main.create_group')}}">
     {{form.csrf_token}}
     <fieldset>
         <legend>New Group</legend>
@@ -25,3 +25,5 @@
 
     </fieldset>
 </form>
+
+{% endblock %}

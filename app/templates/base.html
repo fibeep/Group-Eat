@@ -18,9 +18,8 @@
                                             authenticated (logged in)! -->
                 {% if current_user.is_authenticated %}
                 <a href="/logout">Log Out</a>
-                <a href="/create_group">New Store</a>
-                <a href="/join_group">New Item</a>
-                <a href="/my_groups">View Shopping List</a>
+                <a href="/create_group">Create Group</a>
+                <a href="/join_group">Join Group</a>
                 {% else %}
                 <a href="/signup">Sign Up</a>
                 <a href="/login">Log In</a>

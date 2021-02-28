@@ -44,7 +44,7 @@ class RestaurantForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired(), Length(min=3, max=80)])
     location = StringField("Location", validators=[DataRequired(), Length(min=3, max=80)])
     type = StringField("Type", validators=[DataRequired(), Length(min=3, max=80)])
-    price_range = StringField("Title", validators=[DataRequired(), Length(min=3, max=80)])
+    price_range = StringField("Price Range", validators=[DataRequired(), Length(min=3, max=80)])
     description = TextAreaField("Description", validators=[DataRequired(), Length(min=3, max=10000)])
     photo_url = StringField("Photo Url", validators=[URL()])
     submit = SubmitField('Submit!')

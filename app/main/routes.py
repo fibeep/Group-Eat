@@ -1,6 +1,8 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import date, datetime
+
+import flask_login
 from app import bcrypt
 from app.models import User, Group, Restaurant
 from app.auth.forms import LoginForm, SignUpForm
@@ -17,13 +19,90 @@ main = Blueprint('main', __name__)
 # Homepage Route
 @main.route('/')
 def homepage():
-    return render_template('base.html')
+    return render_template('profile.html')
+
+
 # Create Group
+@main.route('/create_group')
+@login_required
+def create_group():
+    """ This route permits group creation"""
+    # IF form is submitted an valid:
+    # Create new Group object + save to database,
+    # flash sucess message,
+    # redirect user to group page
+    
+    form = GroupForm()
+
+    if form.validate_on_submit():
+        new_group = Group(
+          created_by = flask_login.current_user,
+          name = form.name.data,
+          max_atendees = form.max_atendees.data,
+          location = form.location.data,
+          code = form.code.data
+        )
+        db.session.add(new_group)
+        db.session.commit
+        flash('Group was created successfully')
+        return redirect(url_for('main.homepage', group=new_group))
+    return render_template('create_group.html', form=form)
+
+
 
 # Create Restaurant
+
+@main.route('/create_restaurant')
+@login_required
+def create_restaurant():
+
+    form = RestaurantForm()
+
+    if form.validate_on_submit():
+       new_restaurant = Restaurant(
+       name = form.name.data,
+       location = form.location.data,
+       type = form.type.data,
+       price_range = form.price_range.data,
+       description = form.description.data,
+       photo_url = form.photo_url.data)
+       db.session.add(new_restaurant)
+       db.session.commit()
+       flash('Restaurant updated succesfully')
+       return redirect(url_for('main.restaurant_detail', restaurant=new_restaurant))
+
+    
+    return render_template('create_restaurant.html', form=form)
 
 # Group Route
 
 # Restaurant Details Route
+
+@main.route('/restaurant/<restaurant_id>', methods=['GET', 'POST'])
+@login_required
+def restaurant_detail(restaurant_id):
+    restaurant = Restaurant.query.get(restaurant_id)
+    form = RestaurantForm(obj=restaurant)
+
+    if form.validate_on_submit():
+       name = form.name.data,
+       location = form.location.data,
+       type = form.type.data,
+       price_range = form.price_range.data,
+       description = form.description.data,
+       photo_url = form.photo_url.data 
+       db.session.add(restaurant)
+       db.session.commit()
+       flash('Restaurant updated succesfully')
+       return redirect(url_for('main.restaurant_detail', restaurant_id=restaurant.id))
+
+    restaurant = Restaurant.query.get(restaurant_id)
+    return render_template('restaurant_detail.html', restaurant=restaurant, form=form)
+
+    
+
+    
+
+
 
 # User Profile Page

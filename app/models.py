@@ -27,6 +27,8 @@ class Group(db.Model):
     max_atendees = db.Column(db.Float(precision=2), nullable=False)
     location = db.Column(db.String(80), nullable=False, unique=True)
     code = db.Column(db.String(80), nullable=False, unique=True)
+    atendees = db.relationship('User')
+    restaurants = db.relationship('Restaurant')
     # End Date
     # Atendees - Relationship
     # Restaurants - Relationship
@@ -42,6 +44,7 @@ class Restaurant(db.Model):
     price_range = db.Column(db.String(80), nullable=False, unique=True)
     description = db.Column(db.String(), nullable=False)
     photo_url = db.Column(URLType)
+    group_id = db.Column(Integer, ForeignKey('group.id'))
     # Users who like it
 
 
