@@ -37,9 +37,9 @@ class Group(db.Model):
     #TODO:
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
-    name = db.Column(db.String(80), nullable=False, unique=True)
+    name = db.Column(db.String(80), nullable=False)
     max_atendees = db.Column(db.Float(precision=2), nullable=False)
-    location = db.Column(db.String(80), nullable=False, unique=True)
+    location = db.Column(db.String(80), nullable=False)
     code = db.Column(db.String(80), nullable=False, unique=True)
     atendees = db.relationship('User')
     restaurants = db.relationship('Restaurant')

@@ -1,4 +1,5 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
+import flask
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import date, datetime
 
@@ -45,7 +46,7 @@ def create_group():
           name = form.name.data,
           max_atendees = form.max_atendees.data,
           location = form.location.data,
-          code = form.code.data
+          code = form.code.data,
         )
         current_user.groups.append(new_group)
         db.session.add(new_group)
