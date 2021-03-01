@@ -19,8 +19,13 @@ main = Blueprint('main', __name__)
 # Homepage Route
 @main.route('/')
 def homepage():
-    return render_template('profile.html')
+    return render_template('base.html')
 
+
+@main.route('/profile')
+def profile():
+    groups = current_user.groups
+    return render_template('profile.html', groups=groups)
 
 # Create Group
 @main.route('/create_group', methods=['GET', 'POST'])
@@ -46,10 +51,10 @@ def create_group():
         db.session.add(new_group)
         db.session.commit()
         flash('Group was created successfully')
-        return redirect(url_for('main.homepage', group=new_group))
+        return redirect(url_for('main.profile', group=new_group))
     return render_template('create_group.html', form=form)
 
-
+# Group Detail
 
 # Create Restaurant
 
@@ -75,7 +80,6 @@ def create_restaurant():
     
     return render_template('create_restaurant.html', form=form)
 
-# Group Route
 
 # Restaurant Details Route
 
