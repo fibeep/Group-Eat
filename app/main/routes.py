@@ -23,7 +23,7 @@ def homepage():
 
 
 # Create Group
-@main.route('/create_group')
+@main.route('/create_group', methods=['GET', 'POST'])
 @login_required
 def create_group():
     """ This route permits group creation"""
@@ -42,8 +42,9 @@ def create_group():
           location = form.location.data,
           code = form.code.data
         )
+        current_user.groups.append(new_group)
         db.session.add(new_group)
-        db.session.commit
+        db.session.commit()
         flash('Group was created successfully')
         return redirect(url_for('main.homepage', group=new_group))
     return render_template('create_group.html', form=form)
@@ -52,7 +53,7 @@ def create_group():
 
 # Create Restaurant
 
-@main.route('/create_restaurant')
+@main.route('/create_restaurant', methods=['GET', 'POST'])
 @login_required
 def create_restaurant():
 
@@ -69,7 +70,7 @@ def create_restaurant():
        db.session.add(new_restaurant)
        db.session.commit()
        flash('Restaurant updated succesfully')
-       return redirect(url_for('main.restaurant_detail', restaurant=new_restaurant))
+       return redirect(url_for('main.restaurant_detail', restaurant_id=new_restaurant.id))
 
     
     return render_template('create_restaurant.html', form=form)
