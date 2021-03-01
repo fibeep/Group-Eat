@@ -56,6 +56,13 @@ def create_group():
 
 # Group Detail
 
+@main.route('/group/<group_id>')
+@login_required
+def group_details(group_id):
+    group = Group.query.get(group_id)
+    return render_template('group.html', group=group)
+
+
 # Create Restaurant
 
 @main.route('/create_restaurant', methods=['GET', 'POST'])

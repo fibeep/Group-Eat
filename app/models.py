@@ -44,7 +44,6 @@ class Group(db.Model):
     atendees = db.relationship('User')
     restaurants = db.relationship('Restaurant')
     # End Date
-    # Atendees - Relationship
     # Restaurants - Relationship
 
 class Restaurant(db.Model):
@@ -60,6 +59,7 @@ class Restaurant(db.Model):
     photo_url = db.Column(URLType)
     group_id = db.Column(Integer, ForeignKey('group.id'))
     # Users who like it
+    liked_by = db.relationship('User')
 
 
 
