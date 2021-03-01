@@ -72,8 +72,8 @@ def join_group():
     form = JoinGroupForm()
     if form.validate_on_submit():
         group = Group.query.filter_by(code=form.code.data).one()
-        print(group.name)
         current_user.groups.append(group)
+        print(group.atendees)
         db.session.commit()
         flash('Group was joined successfully')
         return redirect(url_for('main.profile', group=group))
