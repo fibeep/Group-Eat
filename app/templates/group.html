@@ -2,6 +2,7 @@
 {% block content %}
 
 <h1>Name - {{ group.name }}</h1>
+<h1>Code - {{ group.code }}</h1>
 
 <strong>Location:</strong> {{ group.location }}
 
@@ -24,4 +25,12 @@
     <li>atendee.name</li>
 {% endfor %}
 </ul>
+
+
+<form method="POST" action="/create_restaurant">
+    Add New Restaurant
+    <br>
+    <input type="submit" value="Add">
+</form>
+
 {% endblock %}

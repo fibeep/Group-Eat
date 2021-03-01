@@ -3,7 +3,7 @@
 
 <h1>Join Group</h1>
 
-<form method="POST" action="{{ url_for('main.group')}}">
+<form method="POST" action="{{ url_for('main.join_group')}}">
     {{form.csrf_token}}
     <fieldset>
         <legend>Join Group</legend>
@@ -11,7 +11,9 @@
         {{form.code.label}}
         {{form.code}}
         
-        {{submit}}
+        {{form.submit}}
 
     </fieldset>
 </form>
+
+{% endblock %}

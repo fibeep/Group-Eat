@@ -63,6 +63,21 @@ def group_details(group_id):
     group = Group.query.get(group_id)
     return render_template('group.html', group=group)
 
+# Join Group
+
+@main.route('/join_group', methods=['GET', 'POST'])
+@login_required
+def join_group():
+    
+    form = JoinGroupForm()
+    if form.validate_on_submit():
+        group = Group.query.filter_by(code=form.code.data).one()
+        print(group.name)
+        current_user.groups.append(group)
+        db.session.commit()
+        flash('Group was joined successfully')
+        return redirect(url_for('main.profile', group=group))
+    return render_template('join_group.html', form=form)
 
 # Create Restaurant
 
@@ -112,10 +127,3 @@ def restaurant_detail(restaurant_id):
     restaurant = Restaurant.query.get(restaurant_id)
     return render_template('restaurant_detail.html', restaurant=restaurant, form=form)
 
-    
-
-    
-
-
-
-# User Profile Page
