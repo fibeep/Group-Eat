@@ -21,13 +21,13 @@
 {% endfor %}
 <h2>Atendees:</h2>
 <ul>
-{% for atendee in atendees %}
-    <li>atendee.name</li>
+{% for atendee in group.atendees %}
+    <li>{{atendee.name}}</li>
 {% endfor %}
 </ul>
 
 
-<form method="POST" action="/create_restaurant">
+<form method="POST" action="/create_restaurant/group/{{group.id}}">
     Add New Restaurant
     <br>
     <input type="submit" value="Add">

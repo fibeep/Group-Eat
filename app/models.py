@@ -41,20 +41,20 @@ class Group(db.Model):
     max_atendees = db.Column(db.Float(precision=2), nullable=False)
     location = db.Column(db.String(80), nullable=False)
     code = db.Column(db.String(80), nullable=False, unique=True)
-    atendees = db.relationship('User')
-    restaurants = db.relationship('Restaurant')
+    atendees = db.relationship('User', secondary=user_group_table)
+    restaurants = db.relationship('Restaurant', secondary=group_restaurant_table)
     # End Date
     # Restaurants - Relationship
 
 class Restaurant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     #TODO:
-    name = db.Column(db.String(80), nullable=False, unique=True)
+    name = db.Column(db.String(80), nullable=False)
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
-    location = db.Column(db.String(80), nullable=False, unique=True)
-    type = db.Column(db.String(80), nullable=False, unique=True)
-    price_range = db.Column(db.String(80), nullable=False, unique=True)
+    location = db.Column(db.String(80), nullable=False)
+    type = db.Column(db.String(80), nullable=False)
+    price_range = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(), nullable=False)
     photo_url = db.Column(URLType)
     group_id = db.Column(Integer, ForeignKey('group.id'))

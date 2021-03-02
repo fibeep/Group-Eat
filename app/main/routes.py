@@ -81,10 +81,11 @@ def join_group():
 
 # Create Restaurant
 
-@main.route('/create_restaurant', methods=['GET', 'POST'])
-@login_required
-def create_restaurant():
 
+@main.route('/create_restaurant/group/<group_id>', methods=['GET', 'POST'])
+@login_required
+def create_restaurant(group_id):
+    print(group_id)
     form = RestaurantForm()
 
     if form.validate_on_submit():
@@ -94,14 +95,17 @@ def create_restaurant():
        type = form.type.data,
        price_range = form.price_range.data,
        description = form.description.data,
-       photo_url = form.photo_url.data)
+       created_by=flask_login.current_user,
+       photo_url = form.photo_url.data,
+       group_id=group_id)
+       group_id=group_id
        db.session.add(new_restaurant)
        db.session.commit()
        flash('Restaurant updated succesfully')
        return redirect(url_for('main.restaurant_detail', restaurant_id=new_restaurant.id))
 
     
-    return render_template('create_restaurant.html', form=form)
+    return render_template('create_restaurant.html', form=form, id=group_id)
 
 
 # Restaurant Details Route

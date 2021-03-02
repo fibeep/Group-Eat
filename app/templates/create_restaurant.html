@@ -3,7 +3,7 @@
 
 <h1>New Restaurant</h1>
 
-<form method="POST" action="{{ url_for('main.create_restaurant')}}">
+<form method="POST" action="{{ url_for('main.create_restaurant',group_id=id)}}">
     {{form.csrf_token}}
     <fieldset>
         <legend>New Restaurant</legend>
