@@ -8,12 +8,12 @@
 
 <p><strong>Created By:</strong> {{group.created_by.username}}</p>
 
-
-{% for restaurant in restaurants %}
+<h2>Restaurants</h2>
+{% for restaurant in group.restaurants %}
 <div class="store">
     <a href="/restaurant/{{ restaurant.id }}"><img src="{{ restaurant.photo_url }}" alt="{{ restaurant.name }}" width="200px">
     <a href="/restaurant/{{ restaurant.id }}">{{ restaurant.name }}</a>
-    {{ restaurant.liked_by|length }} Likes
+    
     <p><strong>Location:</strong> {{ restaurant.location }}</p>
     <p><strong>Price Range:</strong> {{ restaurant.price_range }}</p>
     <p><strong>Description:</strong> {{ restaurant.description }}</p>

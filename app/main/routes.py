@@ -99,6 +99,8 @@ def create_restaurant(group_id):
        photo_url = form.photo_url.data,
        group_id=group_id)
        group_id=group_id
+       group = Group.query.filter_by(id=group_id).one()
+       group.restaurants.append(new_restaurant)
        db.session.add(new_restaurant)
        db.session.commit()
        flash('Restaurant updated succesfully')
