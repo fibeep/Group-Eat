@@ -26,8 +26,6 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(80), nullable=False, unique=True)
     username = db.Column(db.String(80), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
-    #TODO:
-    # Groups Belonging - Relationship
     groups = db.relationship('Group', secondary=user_group_table)
     # Restaurants Liked - Relationship
 
@@ -43,8 +41,7 @@ class Group(db.Model):
     code = db.Column(db.String(80), nullable=False, unique=True)
     atendees = db.relationship('User', secondary=user_group_table)
     restaurants = db.relationship('Restaurant', secondary=group_restaurant_table)
-    # End Date
-    # Restaurants - Relationship
+    
 
 class Restaurant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
