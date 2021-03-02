@@ -12,7 +12,7 @@
 {% for restaurant in group.restaurants %}
 <div class="store">
     <a href="/restaurant/{{ restaurant.id }}"><img src="{{ restaurant.photo_url }}" alt="{{ restaurant.name }}" width="200px">
-    <a href="/restaurant/{{ restaurant.id }}">{{ restaurant.name }}</a>
+    <a href="/restaurant/{{ restaurant.id }}"> <br>{{ restaurant.name }}</a>
     
     <p><strong>Location:</strong> {{ restaurant.location }}</p>
     <p><strong>Price Range:</strong> {{ restaurant.price_range }}</p>
