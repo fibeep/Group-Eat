@@ -56,7 +56,7 @@ class Restaurant(db.Model):
     photo_url = db.Column(URLType)
     group_id = db.Column(Integer, ForeignKey('group.id'))
     # Users who like it
-    liked_by = db.relationship('User')
+    liked_by = db.relationship('User', secondary=user_restaurant_table)
 
 
 

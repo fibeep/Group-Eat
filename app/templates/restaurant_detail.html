@@ -16,8 +16,16 @@
 <p><strong>Created By:</strong> {{restaurant.created_by.username}}</p>
 
 <h2>Liked By</h2>
+<ul>
+{% for user in restaurant.liked_by %}
+    <li>{{user.name}}</li>
+{% endfor %}
+</ul>
 
-
+<!-- <form method="POST" action="url_for('main.like_restaurant', restaurant_id=restaurant.id)">
+    <label>Like Restaurant</label>
+    <input type="submit" value="Submit">
+</form> -->
 
 <h2>Edit Restaurant</h2>
 

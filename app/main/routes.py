@@ -109,6 +109,13 @@ def create_restaurant(group_id):
     
     return render_template('create_restaurant.html', form=form, id=group_id)
 
+#Like Restaurant Route
+
+# @main.route('/like_restaurant/<restaurant_id>', methods=['POST'])
+# def like_restaurant(restaurant_id):
+#     restaurant = Restaurant.query.get(restaurant_id)
+#     restaurant.liked_by.append(current_user)
+#     return url_for('main.restaurant_detail', restaurant_id=restaurant.id)
 
 # Restaurant Details Route
 
