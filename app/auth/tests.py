@@ -6,6 +6,20 @@ from app import app, db, bcrypt
 from app.models import User, Group, Restaurant
 
 
+
+
+
+# Helper Functions
+
+def create_user():
+    password_hash = bcrypt.generate_password_hash('password').decode('utf-8')
+    user = User(username='me1', password=password_hash, name='test')
+    db.session.add(user)
+    db.session.commit()
+
+
+# Tests
+
 class AuthTests(TestCase):
     """Tests for authentication (login & signup)."""
 
@@ -42,7 +56,24 @@ class AuthTests(TestCase):
         self.assertIn(
             'That username is taken. Please choose a different one.', response_text)
 
+    def test_login_correct_password(self):
+        # Tests for the login route. It should:
+        # - Create a user
+        # - Makes a POST request to /login, sending the created username & password
+        # - Checks that the user's name is now displayed on the homepage
+        # - Check that the form is displayed again with an error message
 
+        create_user()
+        post_data = {
+            'username': 'me1',
+            'password': 'password'
+        }
+        self.app.post('/login', data=post_data)
+
+        response = self.app.get('/', follow_redirects=True)
+
+        response_text = response.get_data(as_text=True)
+        self.assertIn('me1', response_text)
 
 # Tests for the login route. It should:
 # - Create a user
