@@ -7,6 +7,8 @@
     <a href="/group/{{ group.id }}">{{ group.name }}</a> -
     
     <p><strong>Address:</strong> {{ group.location }}</p>
+    <br>
+    <p><strong>Attendees:</strong> {{ group.atendees | length }}</p>
 </div>
 {% endfor %}
 

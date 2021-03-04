@@ -32,7 +32,7 @@ class User(UserMixin, db.Model):
     
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    #TODO:
+    #:
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
     name = db.Column(db.String(80), nullable=False)
@@ -45,7 +45,7 @@ class Group(db.Model):
 
 class Restaurant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    #TODO:
+    #:
     name = db.Column(db.String(80), nullable=False)
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
