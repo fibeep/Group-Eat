@@ -15,7 +15,7 @@ from app import app, db
 
 main = Blueprint('main', __name__)
 
-# TODO:
+# :
 
 # Homepage Route
 @main.route('/')
@@ -111,11 +111,13 @@ def create_restaurant(group_id):
 
 #Like Restaurant Route
 
-# @main.route('/like_restaurant/<restaurant_id>', methods=['POST'])
-# def like_restaurant(restaurant_id):
-#     restaurant = Restaurant.query.get(restaurant_id)
-#     restaurant.liked_by.append(current_user)
-#     return url_for('main.restaurant_detail', restaurant_id=restaurant.id)
+@main.route('/like_restaurant/<restaurant_id>', methods=['POST'])
+@login_required
+def like_restaurant(restaurant_id):
+    restaurant = Restaurant.query.get(restaurant_id)
+    restaurant.liked_by.append(current_user)
+    db.session.commit()
+    return redirect(url_for('main.restaurant_detail', restaurant_id=restaurant.id))
 
 # Restaurant Details Route
 
